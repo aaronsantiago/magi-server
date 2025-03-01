@@ -1,4 +1,6 @@
-name: my-workflow
+name: create executable
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
 jobs:
   my-job:
     name: my-job
