@@ -1,5 +1,5 @@
 name: create executables
-run-name: building executables for commit ${{ github.sha }}
+run-name: build for commit ${{ github.event.head_commit.message }} (${{ github.sha }})
 on: [push]
 permissions:
   contents: write
@@ -15,6 +15,7 @@ jobs:
           calculatedSha=$(git rev-parse --short ${{ github.sha }})
           echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
       - uses: oven-sh/setup-bun@v2
+      - run: bun install
       - run: bun build --compile --minify --sourcemap --bytecode --target=bun-windows-x64 main.js --outfile ${{vars.PROJECT_NAME}}-win.exe
       - run: bun build --compile --minify --sourcemap --bytecode --target=bun-linux-x64 main.js --outfile ${{vars.PROJECT_NAME}}-linux
       - run: bun build --compile --minify --sourcemap --bytecode --target=bun-darwin-arm64 main.js --outfile ${{vars.PROJECT_NAME}}-osx-arm
