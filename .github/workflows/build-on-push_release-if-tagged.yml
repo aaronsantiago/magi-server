@@ -1,5 +1,5 @@
 name: create executables
-run-name: build for commit ${{ github.event.head_commit.message }} (${{ github.sha }})
+run-name: build for commit "${{ github.event.head_commit.message }}" (${{ github.sha }})
 on: [push]
 permissions:
   contents: write
