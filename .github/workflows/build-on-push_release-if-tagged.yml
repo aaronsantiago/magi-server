@@ -23,22 +23,22 @@ jobs:
       - name: Upload windows-executable
         uses: actions/upload-artifact@v4
         with:
-          name: windows-executable
+          name: windows-executable_${{ env.COMMIT_SHORT_SHA }}
           path: ${{vars.PROJECT_NAME}}_${{ env.COMMIT_SHORT_SHA }}_win.exe
       - name: Upload linux-executable
         uses: actions/upload-artifact@v4
         with:
-          name: linux-executable
+          name: linux-executable_${{ env.COMMIT_SHORT_SHA }}
           path: ${{vars.PROJECT_NAME}}_${{ env.COMMIT_SHORT_SHA }}_linux
       - name: Upload macos-arm executable
         uses: actions/upload-artifact@v4
         with:
-          name: macos-arm-executable
+          name: macos-arm-executable_${{ env.COMMIT_SHORT_SHA }}
           path: ${{vars.PROJECT_NAME}}_${{ env.COMMIT_SHORT_SHA }}_osx-arm
       - name: Upload macos-x64 executable
         uses: actions/upload-artifact@v4
         with:
-          name: macos-x64-executable
+          name: macos-x64-executable_${{ env.COMMIT_SHORT_SHA }}
           path: ${{vars.PROJECT_NAME}}_${{ env.COMMIT_SHORT_SHA }}_osx-x64
       - run: mv ${{vars.PROJECT_NAME}}_${{ env.COMMIT_SHORT_SHA }}_osx-x64 ${{vars.PROJECT_NAME}}_${{ github.ref_name }}_osx-x64
         if: startsWith(github.ref, 'refs/tags/')
