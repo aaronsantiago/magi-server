@@ -1,6 +1,8 @@
 name: create executables
 run-name: building executables for commit ${{ github.sha }}
 on: [push]
+permissions:
+  contents: write
 jobs:
   build:
     name: build
