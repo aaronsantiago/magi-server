@@ -1,0 +1,9 @@
+{
+  "name": "3suite-template",
+  "version": "0.0.0",
+  "main": "main.js",
+  "type": "module",
+  "dependencies": {
+    "3lib-config": "github:3sig/3lib-config"
+  }
+}
