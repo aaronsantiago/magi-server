@@ -42,6 +42,11 @@ jobs:
         with:
           name: ${{vars.PROJECT_NAME}}_${{ env.COMMIT_SHORT_SHA }}_osx-x64
           path: ${{vars.PROJECT_NAME}}_${{ env.COMMIT_SHORT_SHA }}_osx-x64
+      - name: Upload config file
+        uses: actions/upload-artifact@v4
+        with:
+          name: config.toml
+          path: config.toml
       - run: mv ${{vars.PROJECT_NAME}}_${{ env.COMMIT_SHORT_SHA }}_osx-x64 ${{vars.PROJECT_NAME}}_${{ github.ref_name }}_osx-x64
         if: startsWith(github.ref, 'refs/tags/')
       - run: mv ${{vars.PROJECT_NAME}}_${{ env.COMMIT_SHORT_SHA }}_osx-arm ${{vars.PROJECT_NAME}}_${{ github.ref_name }}_osx-arm
@@ -64,4 +69,4 @@ jobs:
             ${{vars.PROJECT_NAME}}_${{  github.ref_name }}_osx-x64
             ${{vars.PROJECT_NAME}}_${{  github.ref_name }}_linux
             ${{vars.PROJECT_NAME}}_${{  github.ref_name }}_win.exe
-            ${{vars.PROJECT_NAME}}_${{ github.ref_name }}_config.example.toml
+            config.toml
