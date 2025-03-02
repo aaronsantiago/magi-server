@@ -11,7 +11,7 @@ this repository serves as a template for 3suite projects. as of writing, it incl
 
 fork the repository--any changes that we make to the build workflows should be merged upstream to this template.
 
-builds will automatically be triggered on push.
+enable workflows in github so that the build workflows can run.
 
 ### creating a release
 
@@ -24,6 +24,12 @@ create a tag:
 
 the message inside of the quotes will be the release message.
 the version number will be appended to the output build files.
+
+push the tag:
+
+`git push origin tag v1.0.0`
+
+you DEFINITELY don't want to run `git push --tags` because it will trigger releases for tags across the history.
 
 ### macOS builds
 
