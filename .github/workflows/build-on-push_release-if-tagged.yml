@@ -8,12 +8,12 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Set short git commit SHA
         id: vars
         run: |
           calculatedSha=$(git rev-parse --short ${{ github.sha }})
           echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
-      - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
       - run: bun build --compile --minify --sourcemap --bytecode --target=bun-windows-x64 main.js --outfile ${{vars.PROJECT_NAME}}-win.exe
       - run: bun build --compile --minify --sourcemap --bytecode --target=bun-linux-x64 main.js --outfile ${{vars.PROJECT_NAME}}-linux
