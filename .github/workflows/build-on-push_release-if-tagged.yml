@@ -2,8 +2,8 @@ name: create executables
 run-name: building executables for commit ${{ github.sha }}
 on: [push]
 jobs:
-  my-job:
-    name: my-job
+  build:
+    name: build
     runs-on: ubuntu-latest
     steps:
       # ...
@@ -35,3 +35,12 @@ jobs:
         with:
           name: macos-x64-executable
           path: ${{vars.PROJECT_NAME}}-osx-x64
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            macos-arm-executable/${{vars.PROJECT_NAME}}_${{  github.ref_name }}_osx-arm
+            macos-x64-executable/${{vars.PROJECT_NAME}}_${{  github.ref_name }}_osx-x64
+            linux-executable/${{vars.PROJECT_NAME}}_${{  github.ref_name }}-linux
+            windows-executable/${{vars.PROJECT_NAME}}_${{  github.ref_name }}-win.exe
