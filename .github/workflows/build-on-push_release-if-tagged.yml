@@ -35,12 +35,20 @@ jobs:
         with:
           name: macos-x64-executable
           path: ${{vars.PROJECT_NAME}}-osx-x64
+      - run: mv ${{vars.PROJECT_NAME}}-osx-x64 ${{vars.PROJECT_NAME}}-${{ github.ref_name }}_osx-x64
+        if: startsWith(github.ref, 'refs/tags/')
+      - run: mv ${{vars.PROJECT_NAME}}-osx-arm ${{vars.PROJECT_NAME}}-${{ github.ref_name }}_osx-arm
+        if: startsWith(github.ref, 'refs/tags/')
+      - run: mv ${{vars.PROJECT_NAME}}-linux ${{vars.PROJECT_NAME}}-${{ github.ref_name }}_linux
+        if: startsWith(github.ref, 'refs/tags/')
+      - run: mv ${{vars.PROJECT_NAME}}-win.exe ${{vars.PROJECT_NAME}}-${{ github.ref_name }}_win.exe
+        if: startsWith(github.ref, 'refs/tags/')
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            macos-arm-executable/${{vars.PROJECT_NAME}}_${{  github.ref_name }}_osx-arm
-            macos-x64-executable/${{vars.PROJECT_NAME}}_${{  github.ref_name }}_osx-x64
-            linux-executable/${{vars.PROJECT_NAME}}_${{  github.ref_name }}-linux
-            windows-executable/${{vars.PROJECT_NAME}}_${{  github.ref_name }}-win.exe
+            ${{vars.PROJECT_NAME}}_${{  github.ref_name }}_osx-arm
+            ${{vars.PROJECT_NAME}}_${{  github.ref_name }}_osx-x64
+            ${{vars.PROJECT_NAME}}_${{  github.ref_name }}-linux
+            ${{vars.PROJECT_NAME}}_${{  github.ref_name }}-win.exe
