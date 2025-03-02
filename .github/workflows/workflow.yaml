@@ -11,9 +11,21 @@ jobs:
       - uses: oven-sh/setup-bun@v2
 
       # run any `bun` or `bunx` command
-      - run: bun build --compile --target=bun-windows-x64 main.js --outfile ${{vars.PROJECT_NAME}}.exe
-      - name: Archive production artifacts
+      - run: bun build --compile --target=bun-windows-x64 main.js --outfile ${{vars.PROJECT_NAME}}-win.exe
+      - run: bun build --compile --target=bun-linux-x64 main.js --outfile ${{vars.PROJECT_NAME}}-linux
+      - run: bun build --compile --target=bun-darwin-arm64 main.js --outfile ${{vars.PROJECT_NAME}}-osx-arm
+      - name: Upload windows-executable
         uses: actions/upload-artifact@v4
         with:
           name: windows-executable
-          path: ${{vars.PROJECT_NAME}}.exe
+          path: ${{vars.PROJECT_NAME}}-win.exe
+      - name: Upload linux-executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-executable
+          path: ${{vars.PROJECT_NAME}}-linux
+      - name: Upload macos-executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-executable
+          path: ${{vars.PROJECT_NAME}}-osx-arm
