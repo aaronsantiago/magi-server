@@ -50,5 +50,5 @@ jobs:
           files: |
             ${{vars.PROJECT_NAME}}_${{  github.ref_name }}_osx-arm
             ${{vars.PROJECT_NAME}}_${{  github.ref_name }}_osx-x64
-            ${{vars.PROJECT_NAME}}_${{  github.ref_name }}-linux
-            ${{vars.PROJECT_NAME}}_${{  github.ref_name }}-win.exe
+            ${{vars.PROJECT_NAME}}_${{  github.ref_name }}_linux
+            ${{vars.PROJECT_NAME}}_${{  github.ref_name }}_win.exe
