@@ -18,10 +18,10 @@ jobs:
           echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
       - uses: oven-sh/setup-bun@v2
       - run: bun install
-      - run: bun build --compile --minify --sourcemap --bytecode --target=bun-windows-x64 main.js --outfile ${{ github.event.repository.name }}_${{ env.COMMIT_SHORT_SHA }}_win.exe
-      - run: bun build --compile --minify --sourcemap --bytecode --target=bun-linux-x64 main.js --outfile ${{ github.event.repository.name }}_${{ env.COMMIT_SHORT_SHA }}_linux
-      - run: bun build --compile --minify --sourcemap --bytecode --target=bun-darwin-arm64 main.js --outfile ${{ github.event.repository.name }}_${{ env.COMMIT_SHORT_SHA }}_osx-arm
-      - run: bun build --compile --minify --sourcemap --bytecode --target=bun-darwin-x64 main.js --outfile ${{ github.event.repository.name }}_${{ env.COMMIT_SHORT_SHA }}_osx-x64
+      - run: bun build --compile --target=bun-windows-x64 main.js --outfile ${{ github.event.repository.name }}_${{ env.COMMIT_SHORT_SHA }}_win.exe
+      - run: bun build --compile --target=bun-linux-x64 main.js --outfile ${{ github.event.repository.name }}_${{ env.COMMIT_SHORT_SHA }}_linux
+      - run: bun build --compile --target=bun-darwin-arm64 main.js --outfile ${{ github.event.repository.name }}_${{ env.COMMIT_SHORT_SHA }}_osx-arm
+      - run: bun build --compile --target=bun-darwin-x64 main.js --outfile ${{ github.event.repository.name }}_${{ env.COMMIT_SHORT_SHA }}_osx-x64
       - name: Upload windows-executable
         uses: actions/upload-artifact@v4
         with:
