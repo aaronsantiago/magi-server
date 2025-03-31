@@ -1,1 +1,5 @@
-test = "Hello World!"
+socketAddress = "ws://localhost:4004"
+socketPrefix = "magi"
+
+loadRivetProject = "test.rivet-project"
+loadMagiProject = "test.magi"
